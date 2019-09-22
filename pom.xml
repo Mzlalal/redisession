@@ -12,6 +12,7 @@
         <module>redisession-common</module>
         <module>redisession-api</module>
         <module>redisession-core</module>
+        <module>redisession-consumer</module>
     </modules>
 
     <properties>
