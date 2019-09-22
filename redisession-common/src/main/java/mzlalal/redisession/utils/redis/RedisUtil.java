@@ -1,4 +1,4 @@
-package mzlalal.redisession.redisessioncosumer.util;
+package mzlalal.redisession.utils.redis;
 
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.util.CollectionUtils;

@@ -2,7 +2,7 @@ package mzlalal.redisession.redisessioncosumer.controller;
 
 import mzlalal.redisession.constant.GlobalConstant;
 import mzlalal.redisession.entity.AjaxJson;
-import mzlalal.redisession.redisessioncosumer.util.RedisUtil;
+import mzlalal.redisession.utils.redis.RedisUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

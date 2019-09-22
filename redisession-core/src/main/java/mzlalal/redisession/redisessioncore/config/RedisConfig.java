@@ -1,6 +1,6 @@
 package mzlalal.redisession.redisessioncore.config;
 
-import mzlalal.redisession.redisessioncore.utils.RedisUtil;
+import mzlalal.redisession.utils.redis.RedisUtil;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
