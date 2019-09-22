@@ -5,8 +5,6 @@ import javax.servlet.http.HttpServletRequest;
 /**
  * @description: 全局常量
  * @author: Mzlalal
- * @date: 2019/8/17 16:12
- * @version: 1.0
  */
 public class GlobalConstant {
 

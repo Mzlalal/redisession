@@ -1,6 +1,5 @@
 package mzlalal.redisession.utils.common;
 
-import lombok.extern.slf4j.Slf4j;
 import mzlalal.redisession.constant.GlobalConstant;
 
 import javax.servlet.http.HttpServletRequest;
@@ -9,8 +8,6 @@ import java.net.InetAddress;
 /**
  * @description: 根据Request获取IP地址
  * @author: Mzlalal
- * @date: 2019/8/24 15:37
- * @version: 1.0
  */
 public class IPUtil {
 

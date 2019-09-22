@@ -7,8 +7,6 @@ import java.util.LinkedHashMap;
 /**
  * @description:  $.ajax后需要接受的JSON
  * @author:       Mzlalal
- * @date:         2019/8/17 15:35
- * @version:      1.0
  */
 @Data
 public class AjaxJson {

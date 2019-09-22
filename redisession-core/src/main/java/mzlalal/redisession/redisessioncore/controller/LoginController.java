@@ -15,8 +15,6 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * @description: 登录控制器
  * @author: Mzlalal
- * @date: 2019/8/17 15:00
- * @version: 1.0
  */
 @Controller
 @RequestMapping("/sso")
