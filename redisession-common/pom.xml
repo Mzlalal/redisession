@@ -13,7 +13,7 @@
 
     <groupId>mzlalal.redisession</groupId>
     <artifactId>redisession-common</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>${redisession.project.version}</version>
     <packaging>jar</packaging>
     <name>redisession-common</name>
     <modelVersion>4.0.0</modelVersion>

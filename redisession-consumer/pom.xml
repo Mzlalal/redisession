@@ -11,15 +11,14 @@
 	</parent>
 	<groupId>mzlalal.redisession</groupId>
 	<artifactId>redisession-consumer</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>${redisession.project.version}</version>
 	<packaging>war</packaging>
 	<name>redisession-consumer</name>
 	<description>redisession-core2 for Spring Boot</description>
 
 	<properties>
 		<java.version>1.8</java.version>
-		<redisession-common.verison>0.0.1-SNAPSHOT</redisession-common.verison>
-	</properties>
+    </properties>
 
 	<dependencies>
 		<!-- servlet -->
@@ -32,7 +31,7 @@
 		<dependency>
 			<groupId>mzlalal.redisession</groupId>
 			<artifactId>redisession-common</artifactId>
-			<version>${redisession-common.verison}</version>
+			<version>${redisession.project.version}</version>
 		</dependency>
 		<!-- redis session -->
 		<dependency>

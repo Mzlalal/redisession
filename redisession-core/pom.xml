@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>mzlalal.redisession</groupId>
 	<artifactId>redisession-core</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>${redisession.project.version}</version>
 	<packaging>war</packaging>
 	<name>redisession-core</name>
 	<modelVersion>4.0.0</modelVersion>
