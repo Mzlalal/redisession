@@ -39,9 +39,44 @@ public class GlobalConstant {
     public final static String REDIS_SESSIONS ="mzlalal.sso:sessions:";
 
     /**
+     * http 请求中的 GET 方法
+     */
+    public final static String HTTP_GET = "GET";
+
+    /**
+     * http 请求中的 POST 方法
+     */
+    public final static String HTTP_POST = "POST";
+
+    /**
+     * http 请求中的 PUT 方法
+     */
+    public final static String HTTP_PUT = "PUT";
+
+    /**
+     * http 请求中的 DELETE 方法
+     */
+    public final static String HTTP_DELETE = "DELETE";
+
+    /**
+     * http 请求中的 HEAD 方法
+     */
+    public final static String HTTP_HEAD = "HEAD";
+
+    /**
+     * http 请求中的 OPTIONS 方法
+     */
+    public final static String HTTP_OPTIONS = "OPTIONS";
+
+    /**
+     * http 请求中的 PATCH 方法
+     */
+    public final static String HTTP_PATCH = "PATCH";
+
+    /**
      * 获取 redis sessionKey
-     * @param request
-     * @return
+     * @param request 当前请求对象
+     * @return redis sessionKey
      */
     public static String getRedisSessionKey (HttpServletRequest request) {
         return REDIS_SESSIONS + request.getSession().getId();
