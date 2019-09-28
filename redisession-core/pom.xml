@@ -24,7 +24,6 @@
         <spring-cloud.version>Greenwich.RELEASE</spring-cloud.version>
         <!-- nacos spring cloud版本号 -->
         <spring-cloud-alibaba-nacos.version>0.2.1.RELEASE</spring-cloud-alibaba-nacos.version>
-        <swagger-ui.version>2.9.2</swagger-ui.version>
     </properties>
 
     <dependencyManagement>
@@ -40,28 +39,6 @@
     </dependencyManagement>
 
     <dependencies>
-        <!-- swagger2 -->
-        <dependency>
-            <groupId>io.springfox</groupId>
-            <artifactId>springfox-swagger2</artifactId>
-            <version>${swagger-ui.version}</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>io.swagger</groupId>
-                    <artifactId>swagger-models</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-        <dependency>
-            <groupId>io.swagger</groupId>
-            <artifactId>swagger-models</artifactId>
-            <version>1.5.21</version>
-        </dependency>
-        <dependency>
-            <groupId>io.springfox</groupId>
-            <artifactId>springfox-swagger-ui</artifactId>
-            <version>${swagger-ui.version}</version>
-        </dependency>
         <!-- sop-service-common -->
         <dependency>
             <groupId>com.gitee.sop</groupId>

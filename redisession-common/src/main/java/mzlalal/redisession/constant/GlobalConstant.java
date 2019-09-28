@@ -39,6 +39,11 @@ public class GlobalConstant {
     public final static String REDIS_SESSIONS ="mzlalal.sso:sessions:";
 
     /**
+     * sessionAttr
+     */
+    public final static String SESSION_ATTR ="sessionAttr:";
+
+    /**
      * http 请求中的 GET 方法
      */
     public final static String HTTP_GET = "GET";
@@ -74,12 +79,21 @@ public class GlobalConstant {
     public final static String HTTP_PATCH = "PATCH";
 
     /**
-     * 获取 redis sessionKey
+     * 获取 redis session key
      * @param request 当前请求对象
      * @return redis sessionKey
      */
     public static String getRedisSessionKey (HttpServletRequest request) {
         return REDIS_SESSIONS + request.getSession().getId();
+    }
+
+    /**
+     * 获取 redis session attribute key
+     * @param key
+     * @return redis sessionKey
+     */
+    public static String getSessionAttrKey (String key) {
+        return SESSION_ATTR + key;
     }
 
 }

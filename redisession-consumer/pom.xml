@@ -18,9 +18,52 @@
 
 	<properties>
 		<java.version>1.8</java.version>
-    </properties>
+		<!-- nacos客户端版本号 -->
+		<nacos-client.version>1.1.3</nacos-client.version>
+		<redisession-common.verison>0.0.1-SNAPSHOT</redisession-common.verison>
+		<spring-cloud.version>Greenwich.RELEASE</spring-cloud.version>
+		<!-- nacos spring cloud版本号 -->
+		<spring-cloud-alibaba-nacos.version>0.2.1.RELEASE</spring-cloud-alibaba-nacos.version>
+	</properties>
 
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-dependencies</artifactId>
+				<version>${spring-cloud.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
 	<dependencies>
+		<!-- sop-service-common -->
+		<dependency>
+			<groupId>com.gitee.sop</groupId>
+			<artifactId>sop-service-common</artifactId>
+			<version>2.1.3</version>
+		</dependency>
+		<!-- 使用nacos注册中心
+        版本 0.2.x.RELEASE 对应的是 Spring Boot 2.x 版本，版本 0.1.x.RELEASE 对应的是 Spring Boot 1.x 版本。
+        https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-alibaba-nacos-discovery
+        -->
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+			<version>${spring-cloud-alibaba-nacos.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
+			<version>${spring-cloud-alibaba-nacos.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.alibaba.nacos</groupId>
+			<artifactId>nacos-client</artifactId>
+			<version>${nacos-client.version}</version>
+		</dependency>
+		<!-- 注册中心end -->
 		<!-- servlet -->
 		<dependency>
 			<groupId>javax.servlet</groupId>
@@ -31,9 +74,9 @@
 		<dependency>
 			<groupId>mzlalal.redisession</groupId>
 			<artifactId>redisession-common</artifactId>
-			<version>${redisession.project.version}</version>
+			<version>${redisession-common.verison}</version>
 		</dependency>
-		<!-- redis session -->
+		<!-- spring session -->
 		<dependency>
 			<groupId>org.springframework.session</groupId>
 			<artifactId>spring-session-data-redis</artifactId>
