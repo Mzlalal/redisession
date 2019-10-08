@@ -1,10 +1,10 @@
 package mzlalal.redisession.redisessioncore.config;
 
-import com.gitee.sop.servercommon.configuration.AlipayServiceConfiguration;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
@@ -19,7 +19,7 @@ import springfox.documentation.spring.web.plugins.Docket;
  * @version: 1.0
  */
 @Configuration
-public class OpenServiceConfig extends AlipayServiceConfiguration {
+public class OpenServiceConfig extends WebMvcConfigurationSupport {
 
     /**
      * 打开swagger - ui 静态资源
