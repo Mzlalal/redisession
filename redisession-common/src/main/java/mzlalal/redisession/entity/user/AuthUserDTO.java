@@ -1,5 +1,6 @@
 package mzlalal.redisession.entity.user;
 
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 /**
@@ -14,6 +15,7 @@ public class AuthUserDTO extends AuthUserVO {
     /**
      * 用户密码
      */
+    @ApiModelProperty(value = "用户密码", name = "password", example = "xxx")
     protected String password;
 
     @Override

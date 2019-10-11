@@ -4,7 +4,7 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
@@ -19,14 +19,13 @@ import springfox.documentation.spring.web.plugins.Docket;
  * @version: 1.0
  */
 @Configuration
-public class OpenServiceConfig extends WebMvcConfigurationSupport {
+public class OpenServiceConfig implements WebMvcConfigurer {
 
     /**
      * 打开swagger - ui 静态资源
      */
     @Override
-    protected void addResourceHandlers(ResourceHandlerRegistry registry) {
-        super.addResourceHandlers(registry);
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("swagger-ui.html")
                 .addResourceLocations("classpath:/META-INF/resources/");
         registry.addResourceHandler("/webjars/**")
@@ -41,7 +40,7 @@ public class OpenServiceConfig extends WebMvcConfigurationSupport {
         return getDocket();
     }
 
-    protected Docket getDocket() {
+    public Docket getDocket() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(apiInfo())
                 .select()

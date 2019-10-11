@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>登录</title>
+    <script src="../js/jquery-1.10.2.min.js"></script>
+</head>
+<body>
+<form id="loginForm">
+    用户名:<input type="text" name="username" autocomplete="false"/><br/>
+    密码:<input type="password" name="password" autocomplete="false"/><br/>
+    <input type="button" value="提交" onclick="login()" />
+    <input type="button" value="验证token" onclick="verifyToken()" />
+</form>
+<script>
+    function login() {
+        var loginFormData = $("#loginForm").serialize();
+        $.ajax({
+            method : "POST",
+            url : "../sso/login",
+            data : loginFormData,
+            success : function (data) {
+                if (data.message) {
+                    alert(data.message);
+                }
+                // 判断是否支持 localStorage
+                if (window.localStorage) {
+                    localStorage.setItem("token", data.token);
+                    console.log(localStorage.getItem("token"));
+                }
+            },
+            error : function (data) {
+                console.log(data);
+            }
+        });
+    }
+    function verifyToken() {
+        var token = "";
+        if (window.localStorage) {
+            token = localStorage.getItem("token");
+        }
+        $.ajax({
+            method : "POST",
+            url : "../sso/verifyToken",
+            data : {"token": token},
+            beforeSend: function(request) {
+                if (window.localStorage) {
+                    request.setRequestHeader("token", localStorage.getItem("token"));
+                }
+            },
+            success : function (data) {
+                console.log(data);
+            },
+            error : function (data) {
+                console.log(data);
+            }
+        });
+    }
+    $(document).ready(
+    )
+</script>
+</body>
+</html>

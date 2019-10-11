@@ -1,5 +1,7 @@
 package mzlalal.redisession.entity.user;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -12,18 +14,22 @@ import java.util.Objects;
  * @version: 1.0
  */
 @Data
+@ApiModel(value = "AuthUserVO", description = "用户浏览对象")
 public class AuthUserVO implements Serializable {
     /**
      * 用户ID
      */
+    @ApiModelProperty(value = "用户ID", name = "id", example = "0")
     protected long id;
     /**
      * 用户名称
      */
+    @ApiModelProperty(value = "用户名称", name = "userName", example = "Mz")
     protected String userName;
     /**
      * token
      */
+    @ApiModelProperty(value = "token", name = "token", example = "xxx")
     protected String token;
 
     @Override
