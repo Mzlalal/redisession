@@ -6,14 +6,14 @@ import io.swagger.annotations.ApiParam;
 import lombok.extern.slf4j.Slf4j;
 import mzlalal.redisession.constant.GlobalConstant;
 import mzlalal.redisession.entity.AjaxJson;
+import mzlalal.redisession.redisessionjwt.annotation.Token;
 import mzlalal.redisession.utils.redis.RedisUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.data.redis.core.StringRedisTemplate;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -22,7 +22,7 @@ import javax.servlet.http.HttpServletRequest;
  * @author: Mzlalal
  */
 @Slf4j
-@Controller
+@RestController
 @RefreshScope
 @RequestMapping("/sso")
 @Api(value = "LoginController", tags = "登录控制器")
@@ -47,7 +47,6 @@ public class LoginController {
      * @param callbackUrl 回调URL
      * @return
      */
-    @ResponseBody
     @RequestMapping("/login")
     @ApiOperation(httpMethod = GlobalConstant.HTTP_POST, value = "login", tags = "登录方法", notes = "根据用户名, 密码, 回调URL作为参数请求登录方法",response = AjaxJson.class)
     AjaxJson login(
@@ -89,7 +88,7 @@ public class LoginController {
     /**
      * 验证用户是否登录
      */
-    @ResponseBody
+    @Token
     @RequestMapping("/verifyLogin")
     @ApiOperation(httpMethod = GlobalConstant.HTTP_POST, value = "verifyLogin", tags = "验证用户是否登录", notes = "验证用户是否登录",response = AjaxJson.class)
     public AjaxJson verifyLogin(HttpServletRequest request) {

@@ -17,6 +17,13 @@
     <packaging>jar</packaging>
     <name>redisession-api</name>
 
+    <dependencies>
+        <dependency>
+            <groupId>mzlalal.redisession</groupId>
+            <artifactId>redisession-common</artifactId>
+            <version>${redisession.project.version}</version>
+        </dependency>
+    </dependencies>
 
 
 </project>

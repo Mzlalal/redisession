@@ -20,7 +20,6 @@
         <java.version>1.8</java.version>
         <!-- nacos客户端版本号 -->
         <nacos-client.version>1.1.3</nacos-client.version>
-        <redisession-common.verison>0.0.1-SNAPSHOT</redisession-common.verison>
         <spring-cloud.version>Greenwich.RELEASE</spring-cloud.version>
         <!-- nacos spring cloud版本号 -->
         <spring-cloud-alibaba-nacos.version>0.2.1.RELEASE</spring-cloud-alibaba-nacos.version>
@@ -72,11 +71,17 @@
             <artifactId>javax.servlet-api</artifactId>
             <optional>true</optional>
         </dependency>
+        <!-- redisession-jwt -->
+        <dependency>
+            <groupId>mzlalal.redisession</groupId>
+            <artifactId>redisession-jwt</artifactId>
+            <version>${redisession.project.version}</version>
+        </dependency>
         <!-- redisession-common -->
         <dependency>
             <groupId>mzlalal.redisession</groupId>
             <artifactId>redisession-common</artifactId>
-            <version>${redisession-common.verison}</version>
+            <version>${redisession.project.version}</version>
         </dependency>
         <!-- spring session -->
         <dependency>
