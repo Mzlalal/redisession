@@ -77,12 +77,6 @@
             <artifactId>redisession-jwt</artifactId>
             <version>${redisession.project.version}</version>
         </dependency>
-        <!-- redisession-common -->
-        <dependency>
-            <groupId>mzlalal.redisession</groupId>
-            <artifactId>redisession-common</artifactId>
-            <version>${redisession.project.version}</version>
-        </dependency>
         <!-- spring session -->
         <dependency>
             <groupId>org.springframework.session</groupId>

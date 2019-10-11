@@ -38,12 +38,6 @@
 		</dependencies>
 	</dependencyManagement>
 	<dependencies>
-		<!-- sop-service-common -->
-		<dependency>
-			<groupId>com.gitee.sop</groupId>
-			<artifactId>sop-service-common</artifactId>
-			<version>${sop-service-common}</version>
-		</dependency>
 		<!-- 使用nacos注册中心
         版本 0.2.x.RELEASE 对应的是 Spring Boot 2.x 版本，版本 0.1.x.RELEASE 对应的是 Spring Boot 1.x 版本。
         https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-alibaba-nacos-discovery

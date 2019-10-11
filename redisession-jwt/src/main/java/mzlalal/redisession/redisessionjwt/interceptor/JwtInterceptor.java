@@ -5,14 +5,14 @@ import com.auth0.jwt.exceptions.JWTDecodeException;
 import com.auth0.jwt.exceptions.JWTVerificationException;
 import lombok.extern.slf4j.Slf4j;
 import mzlalal.redisession.entity.user.AuthUserDTO;
-import mzlalal.redisession.redisessionapi.service.AuthUserService;
 import mzlalal.redisession.redisessionjwt.annotation.Token;
 import mzlalal.redisession.redisessionjwt.annotation.TokenPass;
 import mzlalal.redisession.redisessionjwt.exception.JwtException;
 import mzlalal.redisession.redisessionjwt.interfaces.Errors;
 import mzlalal.redisession.redisessionjwt.utils.JwtTokenUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
@@ -30,13 +30,12 @@ import java.lang.reflect.Method;
  * @version:      1.0
  */
 @Slf4j
-@Component
 public class JwtInterceptor implements HandlerInterceptor {
     @Autowired
     JwtTokenUtil jwtToken;
 
     @Autowired
-    AuthUserService authUserService;
+    RestTemplate restTemplate;
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object object) throws Exception {
@@ -82,7 +81,8 @@ public class JwtInterceptor implements HandlerInterceptor {
                 // 查询用户信息
                 AuthUserDTO dto = null;
                 try {
-                    dto = authUserService.findAuthUserDTOById(Long.valueOf(userId));
+                    ResponseEntity<AuthUserDTO> responseEntity = restTemplate.postForEntity("http://redisession-core-provider/sso/findAuthUser", userId, AuthUserDTO.class);
+                    dto = restTemplate.postForObject("http://redisession-core-provider/sso/findAuthUser", userId, AuthUserDTO.class);
                 } catch (NumberFormatException nfe) {
                     log.error("用户 ID 异常!");
                     throw new JwtException(nfe);

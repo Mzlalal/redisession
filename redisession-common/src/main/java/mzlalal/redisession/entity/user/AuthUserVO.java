@@ -2,6 +2,7 @@ package mzlalal.redisession.entity.user;
 
 import lombok.Data;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 /**
@@ -11,7 +12,7 @@ import java.util.Objects;
  * @version: 1.0
  */
 @Data
-public class AuthUserVO {
+public class AuthUserVO implements Serializable {
     /**
      * 用户ID
      */
@@ -19,14 +20,18 @@ public class AuthUserVO {
     /**
      * 用户名称
      */
-
     protected String userName;
+    /**
+     * token
+     */
+    protected String token;
 
     @Override
     public String toString() {
         return "AuthUserVO{" +
                 "id=" + id +
                 ", userName='" + userName + '\'' +
+                ", token='" + token + '\'' +
                 '}';
     }
 
@@ -37,12 +42,13 @@ public class AuthUserVO {
         if (!super.equals(o)) return false;
         AuthUserVO that = (AuthUserVO) o;
         return id == that.id &&
-                Objects.equals(userName, that.userName);
+                Objects.equals(userName, that.userName) &&
+                Objects.equals(token, that.token);
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(super.hashCode(), id, userName);
+        return Objects.hash(super.hashCode(), id, userName, token);
     }
 }

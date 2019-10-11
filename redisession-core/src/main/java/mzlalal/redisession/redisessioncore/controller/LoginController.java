@@ -6,7 +6,9 @@ import io.swagger.annotations.ApiParam;
 import lombok.extern.slf4j.Slf4j;
 import mzlalal.redisession.constant.GlobalConstant;
 import mzlalal.redisession.entity.AjaxJson;
+import mzlalal.redisession.entity.user.AuthUserDTO;
 import mzlalal.redisession.redisessionjwt.annotation.Token;
+import mzlalal.redisession.redisessionjwt.annotation.TokenPass;
 import mzlalal.redisession.utils.redis.RedisUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -48,8 +50,9 @@ public class LoginController {
      * @return
      */
     @RequestMapping("/login")
-    @ApiOperation(httpMethod = GlobalConstant.HTTP_POST, value = "login", tags = "登录方法", notes = "根据用户名, 密码, 回调URL作为参数请求登录方法",response = AjaxJson.class)
-    AjaxJson login(
+    @ApiOperation(httpMethod = GlobalConstant.HTTP_POST, value = "login", tags = "登录方法",
+            notes = "根据用户名, 密码, 回调URL作为参数请求登录方法", response = AjaxJson.class)
+    public AjaxJson login(
             @ApiParam(name = "userName", value = "用户名", required = true) String userName,
             @ApiParam(name = "password", value = "密码", required = true) String password,
             @ApiParam(name = "callbackUrl", value = "回调URL") String callbackUrl,
@@ -69,10 +72,16 @@ public class LoginController {
 
         // 用户验证
         if (account.equals(userName) && account.equals(password)) {
-            request.getSession().setAttribute("user", account);
+            // 保存用户对象
+            AuthUserDTO authUserDTO = new AuthUserDTO();
+            authUserDTO.setPassword(password);
+            authUserDTO.setUserName(userName);
+            authUserDTO.setToken(password);
+
+            request.getSession().setAttribute("user", authUserDTO);
+
             // 返回token
             aj.put("token", GlobalConstant.REDIS_SESSIONS + request.getSession().getId());
-
             // 回调URL
             aj.put("callbackUrl", callbackUrl);
         } else {
@@ -81,7 +90,7 @@ public class LoginController {
 
         // 测试序列化
         redisUtil.set("aj2", aj);
-        redisUtil.hset("aj","a", aj);
+        redisUtil.hset("aj", "a", aj);
         return aj;
     }
 
@@ -90,7 +99,8 @@ public class LoginController {
      */
     @Token
     @RequestMapping("/verifyLogin")
-    @ApiOperation(httpMethod = GlobalConstant.HTTP_POST, value = "verifyLogin", tags = "验证用户是否登录", notes = "验证用户是否登录",response = AjaxJson.class)
+    @ApiOperation(httpMethod = GlobalConstant.HTTP_POST, value = "verifyLogin", tags = "验证用户是否登录",
+            notes = "验证用户是否登录", response = AjaxJson.class)
     public AjaxJson verifyLogin(HttpServletRequest request) {
         AjaxJson aj = new AjaxJson();
 
@@ -101,5 +111,17 @@ public class LoginController {
             aj.setMsg("用户未登录或者登录已过期！请重新登录！");
         }
         return aj;
+    }
+
+    /**
+     * 验证用户是否登录
+     */
+    @TokenPass
+    @RequestMapping("/findAuthUser")
+    @ApiOperation(httpMethod = GlobalConstant.HTTP_POST, value = "findAuthUser", tags = "获取用户信息",
+            notes = "获取用户信息,先从缓存中获取,若缓存不存在则查询数据库", response = AuthUserDTO.class)
+    public AuthUserDTO findAuthUser(HttpServletRequest request) {
+        AuthUserDTO authUserDTO = (AuthUserDTO) request.getSession().getAttribute("user");
+        return authUserDTO;
     }
 }

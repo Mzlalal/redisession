@@ -46,7 +46,6 @@ public class JwtException extends Exception {
      * @param data 错误信息
      */
     public JwtException(String code, Object data) {
-        super();
         this.code = code;
         this.data = data;
     }
