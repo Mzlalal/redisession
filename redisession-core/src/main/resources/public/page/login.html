@@ -7,7 +7,7 @@
 </head>
 <body>
 <form id="loginForm">
-    用户名:<input type="text" name="username" autocomplete="false"/><br/>
+    用户名:<input type="text" name="userName" autocomplete="false"/><br/>
     密码:<input type="password" name="password" autocomplete="false"/><br/>
     <input type="button" value="提交" onclick="login()" />
     <input type="button" value="验证token" onclick="verifyToken()" />
@@ -20,12 +20,12 @@
             url : "../sso/login",
             data : loginFormData,
             success : function (data) {
-                if (data.message) {
-                    alert(data.message);
+                if (data.msg) {
+                    alert(data.msg);
                 }
                 // 判断是否支持 localStorage
                 if (window.localStorage) {
-                    localStorage.setItem("token", data.token);
+                    localStorage.setItem("token", data.body.token);
                     console.log(localStorage.getItem("token"));
                 }
             },
@@ -41,7 +41,7 @@
         }
         $.ajax({
             method : "POST",
-            url : "../sso/verifyToken",
+            url : "../sso/verifyLogin",
             data : {"token": token},
             beforeSend: function(request) {
                 if (window.localStorage) {
@@ -56,8 +56,6 @@
             }
         });
     }
-    $(document).ready(
-    )
 </script>
 </body>
 </html>
