@@ -19,4 +19,6 @@ public interface Errors {
     JwtException expiredException = new JwtException("2", "token未已经过期,请重新登录!");
 
     JwtException verifyException = new JwtException("3", "token验证失败!");
+
+    JwtException noLoginException = new JwtException("4", "用户未登录!");
 }

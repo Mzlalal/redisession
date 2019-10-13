@@ -28,15 +28,22 @@ public class RedisessionJwtConfig implements WebMvcConfigurer {
      */
     @LoadBalanced
     @Bean(name = "restTemplate")
-    public RestTemplate restTemplate() {
+    public RestTemplate createRestTemplate() {
         return new RestTemplate();
+    }
+
+    @Bean(name = "jwtInterceptor")
+    public JwtInterceptor createJwtInterceptor() {
+        createRestTemplate();
+        createJwtTokenUtil();
+        return new JwtInterceptor();
     }
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
 
         // 拦截所有请求，通过判断是否有 @Token 注解 决定是否需要登录
-        registry.addInterceptor(new JwtInterceptor())
+        registry.addInterceptor(createJwtInterceptor())
                 .addPathPatterns("/**");
     }
 }

@@ -9,6 +9,7 @@ import mzlalal.redisession.entity.AjaxJson;
 import mzlalal.redisession.entity.user.AuthUserDTO;
 import mzlalal.redisession.redisessionjwt.annotation.Token;
 import mzlalal.redisession.redisessionjwt.annotation.TokenPass;
+import mzlalal.redisession.redisessionjwt.utils.JwtTokenUtil;
 import mzlalal.redisession.utils.redis.RedisUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -40,6 +41,9 @@ public class LoginController {
 
     @Value("${account:admin}")
     String account;
+
+    @Autowired
+    JwtTokenUtil jwtTokenUtil;
 
     /**
      * 登录方法
@@ -81,7 +85,7 @@ public class LoginController {
             request.getSession().setAttribute("user", authUserDTO);
 
             // 返回token
-            aj.put("token", GlobalConstant.REDIS_SESSIONS + request.getSession().getId());
+            aj.put("token", jwtTokenUtil.createToken("1", password));
             // 回调URL
             aj.put("callbackUrl", callbackUrl);
         } else {
@@ -118,10 +122,10 @@ public class LoginController {
      */
     @TokenPass
     @RequestMapping("/findAuthUser")
-    @ApiOperation(httpMethod = GlobalConstant.HTTP_POST, value = "findAuthUser", tags = "获取用户信息",
+    @ApiOperation(httpMethod = GlobalConstant.HTTP_GET, value = "findAuthUser", tags = "获取用户信息",
             notes = "获取用户信息,先从缓存中获取,若缓存不存在则查询数据库", response = AuthUserDTO.class)
     public AuthUserDTO findAuthUser(HttpServletRequest request) {
-        AuthUserDTO authUserDTO = (AuthUserDTO) request.getSession().getAttribute("user");
-        return authUserDTO;
+        return (AuthUserDTO) request.getSession().getAttribute("user");
     }
+
 }
