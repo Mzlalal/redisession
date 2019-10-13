@@ -28,6 +28,18 @@ public class BaseRedisConfig {
     private String redisTopic;
 
     /**
+     * 创建 redis 键过期事件
+     * 如果想对键过期后进行业务处理
+     * 创建一个类BaseRedisKeyExpirationListener 并且重写这个方法返回新的类
+     *
+     * @param container RedisMessageListenerContainer redis信息键过期时间
+     * @return BaseRedisKeyExpirationListener
+     */
+    public BaseRedisKeyExpirationListener createRedisKeyExpirationListener(RedisMessageListenerContainer container) {
+        return new BaseRedisKeyExpirationListener(container);
+    }
+
+    /**
      * redis信息监听器容器
      */
     @Bean
@@ -35,7 +47,7 @@ public class BaseRedisConfig {
         log.info("***************************redis监听器初始化***************************");
         RedisMessageListenerContainer container = new RedisMessageListenerContainer();
         container.setConnectionFactory(connectionFactory);
-        container.addMessageListener(new BaseRedisKeyExpirationListener(container), new PatternTopic(redisTopic));
+        container.addMessageListener(createRedisKeyExpirationListener(container), new PatternTopic(redisTopic));
         log.info("redis监听键事件主题为:{}", redisTopic);
         log.info("***************************redis监听器初始化完毕***************************");
         return container;

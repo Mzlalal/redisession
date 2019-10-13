@@ -13,9 +13,9 @@ import org.springframework.data.redis.listener.RedisMessageListenerContainer;
  * @author Mzlalal
  */
 @Slf4j
-public class RedisKeyExpirationListener extends BaseRedisKeyExpirationListener {
+public class ConsumerRedisKeyExpirationListener extends BaseRedisKeyExpirationListener {
 
-    public RedisKeyExpirationListener(RedisMessageListenerContainer listenerContainer) {
+    public ConsumerRedisKeyExpirationListener(RedisMessageListenerContainer listenerContainer) {
         super(listenerContainer);
     }
 
@@ -30,7 +30,7 @@ public class RedisKeyExpirationListener extends BaseRedisKeyExpirationListener {
     public synchronized void onMessage(Message message, byte[] pattern) {
         //  message.toString()可以获取失效的key名
         String expiredKey = message.toString();
-        log.info("redis失效key通知:expiredKey={}", expiredKey);
+        log.info("redisession-consumer : redis失效key通知:expiredKey={}", expiredKey);
 
 //        // 做自己的业务处理即可
 //        if (expiredKey.startsWith("xxx")) {
