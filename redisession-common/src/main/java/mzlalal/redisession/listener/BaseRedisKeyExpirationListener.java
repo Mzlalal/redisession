@@ -1,8 +1,8 @@
-package mzlalal.redisession.redisessioncosumer.listener;
+package mzlalal.redisession.listener;
 
 import lombok.extern.slf4j.Slf4j;
-import mzlalal.redisession.listener.BaseRedisKeyExpirationListener;
 import org.springframework.data.redis.connection.Message;
+import org.springframework.data.redis.listener.KeyExpirationEventMessageListener;
 import org.springframework.data.redis.listener.RedisMessageListenerContainer;
 
 /**
@@ -13,16 +13,16 @@ import org.springframework.data.redis.listener.RedisMessageListenerContainer;
  * @author Mzlalal
  */
 @Slf4j
-public class RedisKeyExpirationListener extends BaseRedisKeyExpirationListener {
+public class BaseRedisKeyExpirationListener extends KeyExpirationEventMessageListener {
 
-    public RedisKeyExpirationListener(RedisMessageListenerContainer listenerContainer) {
+    public BaseRedisKeyExpirationListener(RedisMessageListenerContainer listenerContainer) {
         super(listenerContainer);
     }
 
     /**
      * 针对redis数据失效事件，进行数据处理
      * redis.conf 设置 notify-keyspace-events "Ex"
-     *
+     * 若需要根据业务情况修改 重载这个方法
      * @param message
      * @param pattern
      */
@@ -31,10 +31,5 @@ public class RedisKeyExpirationListener extends BaseRedisKeyExpirationListener {
         //  message.toString()可以获取失效的key名
         String expiredKey = message.toString();
         log.info("redis失效key通知:expiredKey={}", expiredKey);
-
-//        // 做自己的业务处理即可
-//        if (expiredKey.startsWith("xxx")) {
-//
-//        }
     }
 }

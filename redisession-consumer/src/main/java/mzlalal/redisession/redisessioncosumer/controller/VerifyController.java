@@ -27,8 +27,16 @@ public class VerifyController {
     /**
      * 验证是否登录
      */
+    @RequestMapping("/testExpired")
+    public void testExpired() {
+        redisUtil.set("testKey", "testValue", 5);
+    }
+
+    /**
+     * 验证是否登录
+     */
     @RequestMapping("/verifyLogin")
-    public AjaxJson verifyLogin(HttpServletRequest request) {
+    public AjaxJson verifyLogin() {
         ResponseEntity<AjaxJson> responseEntity = restTemplate.postForEntity("http://redisession-core-provider/sso/verifyLogin", null, AjaxJson.class);
         return responseEntity.getBody();
     }
@@ -38,8 +46,7 @@ public class VerifyController {
      */
     @RequestMapping("/findAuthUser")
     public AuthUserDTO findAuthUser(HttpServletRequest request) {
-//        AuthUserDTO responseEntity = restTemplate.getForObject("http://redisession-core-provider/sso/findAuthUser", AuthUserDTO.class);
-//        return responseEntity;
+        // 直接获取user即可  如果请求其他服务获取user容易被误认为新的请求 而获取不同的session
         Object obj = request.getSession().getAttribute("user");
         if (obj != null) {
             log.info(obj.toString());
