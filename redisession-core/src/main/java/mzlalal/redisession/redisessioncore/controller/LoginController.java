@@ -14,7 +14,6 @@ import mzlalal.redisession.utils.redis.RedisUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
-import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -30,11 +29,6 @@ import javax.servlet.http.HttpServletRequest;
 @RequestMapping("/sso")
 @Api(value = "LoginController", tags = "登录控制器")
 public class LoginController {
-    /**
-     * 获取spring - redis - template 服务
-     */
-    @Autowired
-    StringRedisTemplate stringRedisTemplate;
 
     @Autowired
     RedisUtil redisUtil;
@@ -125,7 +119,10 @@ public class LoginController {
     @ApiOperation(httpMethod = GlobalConstant.HTTP_GET, value = "findAuthUser", tags = "获取用户信息",
             notes = "获取用户信息,先从缓存中获取,若缓存不存在则查询数据库", response = AuthUserDTO.class)
     public AuthUserDTO findAuthUser(HttpServletRequest request) {
+        Object obj = request.getSession().getAttribute("user");
+        if (obj != null) {
+            log.info(obj.toString());
+        }
         return (AuthUserDTO) request.getSession().getAttribute("user");
     }
-
 }
