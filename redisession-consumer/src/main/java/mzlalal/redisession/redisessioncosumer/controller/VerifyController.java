@@ -25,7 +25,7 @@ public class VerifyController {
     RestTemplate restTemplate;
 
     /**
-     * 验证是否登录
+     * 验证redis过期监听
      */
     @RequestMapping("/testExpired")
     public void testExpired() {
