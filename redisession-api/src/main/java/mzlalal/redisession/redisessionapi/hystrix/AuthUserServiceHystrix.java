@@ -1,15 +1,16 @@
-package mzlalal.redisession.redisessioncore.serviceImpl;
+package mzlalal.redisession.redisessionapi.hystrix;
 
 import mzlalal.redisession.entity.user.AuthUserDTO;
 import mzlalal.redisession.entity.user.AuthUserVO;
 import mzlalal.redisession.redisessionapi.service.AuthUserService;
-import org.springframework.stereotype.Service;
 
 /**
- * 用户服务实现类
+ * @description: 用户服务熔断器
+ * @author: Mzlalal
+ * @date: 2019/10/15 17:42
+ * @version: 1.0
  */
-@Service
-public class AuthUserServiceImpl implements AuthUserService {
+public class AuthUserServiceHystrix implements AuthUserService {
     /**
      * 根据用户 ID 查找用户 VO 对象
      *
@@ -19,7 +20,7 @@ public class AuthUserServiceImpl implements AuthUserService {
     @Override
     public AuthUserVO findAuthUserVOById(long id) {
         AuthUserVO vo = new AuthUserVO();
-        vo.setUserName("success");
+        vo.setUserName("error");
         return vo;
     }
 
@@ -32,7 +33,7 @@ public class AuthUserServiceImpl implements AuthUserService {
     @Override
     public AuthUserDTO findAuthUserDTOById(long id) {
         AuthUserDTO dto = new AuthUserDTO();
-        dto.setUserName("success");
+        dto.setUserName("error");
         return dto;
     }
 }

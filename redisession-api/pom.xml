@@ -16,14 +16,16 @@
     <version>${redisession.project.version}</version>
     <packaging>jar</packaging>
     <name>redisession-api</name>
-
     <dependencies>
         <dependency>
             <groupId>mzlalal.redisession</groupId>
             <artifactId>redisession-common</artifactId>
             <version>${redisession.project.version}</version>
         </dependency>
+        <!--feignClient-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-openfeign</artifactId>
+        </dependency>
     </dependencies>
-
-
 </project>

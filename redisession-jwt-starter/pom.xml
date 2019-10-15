@@ -35,11 +35,6 @@
             <version>${redisession.project.version}</version>
         </dependency>
         <dependency>
-            <groupId>mzlalal.redisession</groupId>
-            <artifactId>redisession-common</artifactId>
-            <version>${redisession.project.version}</version>
-        </dependency>
-        <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
         </dependency>
