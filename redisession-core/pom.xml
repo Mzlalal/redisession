@@ -74,7 +74,7 @@
         <!-- redisession-jwt -->
         <dependency>
             <groupId>mzlalal.redisession</groupId>
-            <artifactId>redisession-jwt</artifactId>
+            <artifactId>redisession-jwt-starter</artifactId>
             <version>${redisession.project.version}</version>
         </dependency>
         <!-- spring session -->

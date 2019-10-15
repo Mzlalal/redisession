@@ -9,13 +9,26 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>redisession-jwt</artifactId>
+    <artifactId>redisession-jwt-starter</artifactId>
     <version>${redisession.project.version}</version>
     <packaging>jar</packaging>
-    <name>redisession-jwt</name>
+    <name>redisession-jwt-starter</name>
     <description>jwt验证</description>
 
     <dependencies>
+        <!--生成配置文件元数据结构-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-autoconfigure</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+        </dependency>
         <dependency>
             <groupId>mzlalal.redisession</groupId>
             <artifactId>redisession-api</artifactId>
@@ -51,6 +64,5 @@
             <version>RELEASE</version>
         </dependency>
     </dependencies>
-
 
 </project>
