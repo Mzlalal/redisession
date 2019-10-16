@@ -16,7 +16,10 @@
     <description>jwt验证</description>
 
     <dependencies>
-
+         <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-openfeign</artifactId>
+        </dependency>
         <!-- Dubbo Spring Cloud Starter -->
         <dependency>
             <groupId>com.alibaba.cloud</groupId>
