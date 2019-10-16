@@ -7,7 +7,7 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 
 @SpringBootApplication
 @EnableDiscoveryClient
-@EnableFeignClients
+@EnableFeignClients(basePackages = {"mzlalal.redisession.redisessioncosumer"})
 public class RedisessionCosumerApplication {
 
     public static void main(String[] args) {

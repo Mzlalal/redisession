@@ -2,8 +2,6 @@ package mzlalal.redisession.redisessionapi.service;
 
 import mzlalal.redisession.entity.user.AuthUserDTO;
 import mzlalal.redisession.entity.user.AuthUserVO;
-import mzlalal.redisession.redisessionapi.hystrix.AuthUserServiceHystrix;
-import org.springframework.cloud.openfeign.FeignClient;
 
 /**
  * @description: 用户服务
@@ -11,7 +9,6 @@ import org.springframework.cloud.openfeign.FeignClient;
  * @date: 2019/10/11 16:59
  * @version: 1.0
  */
-@FeignClient(name = "authUserService", fallback = AuthUserServiceHystrix.class)
 public interface AuthUserService {
 
     /**

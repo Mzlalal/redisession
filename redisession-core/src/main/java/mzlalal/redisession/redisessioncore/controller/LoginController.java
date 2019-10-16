@@ -125,4 +125,17 @@ public class LoginController {
         }
         return (AuthUserDTO) request.getSession().getAttribute("user");
     }
+
+    /**
+     * 验证用户是否登录
+     */
+    @TokenPass
+    @RequestMapping("/testFeign")
+    @ApiOperation(httpMethod = GlobalConstant.HTTP_GET, value = "findAuthUser", tags = "获取用户信息",
+            notes = "获取用户信息,先从缓存中获取,若缓存不存在则查询数据库", response = AuthUserDTO.class)
+    public AuthUserDTO testFeign() {
+        AuthUserDTO dto = new AuthUserDTO();
+        dto.setUserName("success");
+        return dto;
+    }
 }
