@@ -3,7 +3,6 @@ package mzlalal.redisession.redisessionjwt.config;
 import mzlalal.redisession.redisessionjwt.interceptor.JwtInterceptor;
 import mzlalal.redisession.redisessionjwt.utils.JwtTokenUtil;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
-import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.client.RestTemplate;
@@ -30,7 +29,6 @@ public class RedisessionJwtConfig implements WebMvcConfigurer {
      * 注入封装 restTemplate
      * @return RestTemplate
      */
-    @LoadBalanced
     @Bean(name = "restTemplate")
     @ConditionalOnMissingBean(RestTemplate.class)
     public RestTemplate createRestTemplate() {

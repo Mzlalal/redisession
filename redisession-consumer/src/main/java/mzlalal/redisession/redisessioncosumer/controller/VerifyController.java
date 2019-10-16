@@ -3,7 +3,9 @@ package mzlalal.redisession.redisessioncosumer.controller;
 import lombok.extern.slf4j.Slf4j;
 import mzlalal.redisession.entity.AjaxJson;
 import mzlalal.redisession.entity.user.AuthUserDTO;
+import mzlalal.redisession.redisessionapi.service.AuthUserService;
 import mzlalal.redisession.utils.redis.RedisUtil;
+import org.apache.dubbo.config.annotation.Reference;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,12 +26,23 @@ public class VerifyController {
     @Autowired
     RestTemplate restTemplate;
 
+    @Reference
+    AuthUserService authUserService;
+
     /**
      * 验证是否登录
      */
     @RequestMapping("/testExpired")
     public void testExpired() {
         redisUtil.set("testKey", "testValue", 5);
+    }
+
+    /**
+     * 验证是否登录
+     */
+    @RequestMapping("/testDubbo")
+    public AuthUserDTO testDubbo() {
+        return authUserService.findAuthUserDTOById(1);
     }
 
     /**

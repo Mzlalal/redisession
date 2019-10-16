@@ -3,7 +3,8 @@ package mzlalal.redisession.redisessioncore.serviceImpl;
 import mzlalal.redisession.entity.user.AuthUserDTO;
 import mzlalal.redisession.entity.user.AuthUserVO;
 import mzlalal.redisession.redisessionapi.service.AuthUserService;
-import org.springframework.stereotype.Service;
+import org.apache.dubbo.config.annotation.Service;
+
 
 /**
  * 用户服务实现类
