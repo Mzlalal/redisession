@@ -16,6 +16,18 @@
     <description>jwt验证</description>
 
     <dependencies>
+
+        <!-- Dubbo Spring Cloud Starter -->
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-dubbo</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.alibaba</groupId>
+                    <artifactId>dubbo</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
         <!--生成配置文件元数据结构-->
         <dependency>
             <groupId>org.springframework.boot</groupId>

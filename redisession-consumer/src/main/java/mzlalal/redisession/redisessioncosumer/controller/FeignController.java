@@ -2,7 +2,7 @@ package mzlalal.redisession.redisessioncosumer.controller;
 
 import lombok.extern.slf4j.Slf4j;
 import mzlalal.redisession.redisessionapi.service.AuthUserService;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.apache.dubbo.config.annotation.Reference;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("feign")
 public class FeignController {
 
-    @Autowired
+    @Reference
     AuthUserService authUserService;
 
     @RequestMapping("testFeign")
