@@ -1,5 +1,7 @@
 package mzlalal.redisession.redisessioncosumer.config;
 
+import com.alibaba.cloud.dubbo.annotation.DubboTransported;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -13,14 +15,15 @@ import org.springframework.web.client.RestTemplate;
  */
 @Configuration
 public class UtilsConfig {
-
     /**
      * 注入封装 restTemplate
      * @return RestTemplate
      */
+    @Bean
     @LoadBalanced
-    @Bean(name = "restTemplate")
-    public RestTemplate restTemplate() {
+    @DubboTransported
+    @ConditionalOnMissingBean(RestTemplate.class)
+    public RestTemplate createRestTemplate() {
         return new RestTemplate();
     }
 }

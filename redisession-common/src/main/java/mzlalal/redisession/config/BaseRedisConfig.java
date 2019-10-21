@@ -3,11 +3,16 @@ package mzlalal.redisession.config;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.extern.slf4j.Slf4j;
+import mzlalal.redisession.listener.BaseRedisKeyExpirationListener;
 import mzlalal.redisession.utils.redis.RedisUtil;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
+import org.springframework.data.redis.listener.PatternTopic;
+import org.springframework.data.redis.listener.RedisMessageListenerContainer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 
 import java.nio.charset.Charset;
@@ -16,7 +21,37 @@ import java.nio.charset.Charset;
  * @description: redis 初始化配置
  * @author: Mzlalal
  */
+@Slf4j
 public class BaseRedisConfig {
+
+    @Value("${spring.redis.topic:__keyevent@*__:expired}")
+    private String redisTopic;
+
+    /**
+     * 创建 redis 键过期事件
+     * 如果想对键过期后进行业务处理
+     * 创建一个类BaseRedisKeyExpirationListener 并且重写这个方法返回新的类
+     *
+     * @param container RedisMessageListenerContainer redis信息键过期时间
+     * @return BaseRedisKeyExpirationListener
+     */
+    public BaseRedisKeyExpirationListener createRedisKeyExpirationListener(RedisMessageListenerContainer container) {
+        return new BaseRedisKeyExpirationListener(container);
+    }
+
+    /**
+     * redis信息监听器容器
+     */
+    @Bean
+    RedisMessageListenerContainer container(RedisConnectionFactory connectionFactory) {
+        log.info("***************************redis监听器初始化***************************");
+        RedisMessageListenerContainer container = new RedisMessageListenerContainer();
+        container.setConnectionFactory(connectionFactory);
+        container.addMessageListener(createRedisKeyExpirationListener(container), new PatternTopic(redisTopic));
+        log.info("redis监听键事件主题为:{}", redisTopic);
+        log.info("***************************redis监听器初始化完毕***************************");
+        return container;
+    }
 
     /**
      * 实例化 StringRedisTemplate 对象
