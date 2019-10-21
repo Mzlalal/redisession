@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @version: 1.0
  */
 @Slf4j
-@RestController()
+@RestController
 @RequestMapping("feign")
 public class FeignController {
 

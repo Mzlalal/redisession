@@ -23,7 +23,6 @@
 		<spring-cloud.version>Greenwich.RELEASE</spring-cloud.version>
 		<!-- nacos spring cloud版本号 -->
 		<spring-cloud-alibaba-nacos.version>0.2.1.RELEASE</spring-cloud-alibaba-nacos.version>
-		<sop-service-common>2.2.0-SNAPSHOT</sop-service-common>
 	</properties>
 
 	<dependencies>
@@ -62,7 +61,7 @@
 		<!-- redisession-common -->
 		<dependency>
 			<groupId>mzlalal.redisession</groupId>
-			<artifactId>redisession-api</artifactId>
+			<artifactId>redisession-jwt-starter</artifactId>
 			<version>${redisession.project.version}</version>
 		</dependency>
 		<!-- spring session -->

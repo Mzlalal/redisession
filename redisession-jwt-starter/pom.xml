@@ -24,12 +24,6 @@
         <dependency>
             <groupId>com.alibaba.cloud</groupId>
             <artifactId>spring-cloud-starter-dubbo</artifactId>
-            <exclusions>
-                <exclusion>
-                    <groupId>com.alibaba</groupId>
-                    <artifactId>dubbo</artifactId>
-                </exclusion>
-            </exclusions>
         </dependency>
         <!--生成配置文件元数据结构-->
         <dependency>
@@ -71,7 +65,6 @@
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-commons</artifactId>
-            <version>RELEASE</version>
         </dependency>
     </dependencies>
 
