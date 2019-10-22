@@ -21,6 +21,7 @@
         <module>redisession-jwt-starter</module>
         <module>redisession-core</module>
         <module>redisession-consumer</module>
+        <module>redisession-gateway</module>
     </modules>
 
     <properties>
