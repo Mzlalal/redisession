@@ -22,7 +22,7 @@
         <module>redisession-core</module>
         <module>redisession-consumer</module>
         <module>redisession-gateway</module>
-        <module>redisesion-messageQueue</module>
+        <module>redisession-messageQueue</module>
     </modules>
 
     <properties>
