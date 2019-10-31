@@ -12,7 +12,7 @@ import org.springframework.context.annotation.Bean;
 
 @Slf4j
 @SpringBootConfiguration
-public class RocketMqConfig {
+public class RocketMqProducerConfig {
     /**
      * 发送同一类消息的设置为同一个group，保证唯一,默认不需要设置,
      * rocketmq会使用ip@pid(pid代表jvm名字)作为唯一标示

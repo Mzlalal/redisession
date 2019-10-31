@@ -19,7 +19,7 @@ import org.springframework.util.StringUtils;
  */
 @Slf4j
 @SpringBootConfiguration
-public class MQConsumerConfiguration {
+public class RocketMqConsumerConfig {
     @Value("${rocketmq.consumer.namesrvAddr}")
     private String namesrvAddr;
     @Value("${rocketmq.consumer.groupName}")

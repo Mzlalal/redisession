@@ -41,11 +41,13 @@ public class DefaultProductTest {
 	}
 
 	public void send() throws MQClientException, RemotingException, MQBrokerException, InterruptedException{
+		
 		String msg = "demo msg test";
 		log.info("开始发送消息："+msg);
-		Message sendMsg = new Message("DemoTopic","DemoTag",msg.getBytes());
+		Message sendMsg = new Message("RedisessionTopic","demo", msg.getBytes());
 		//默认3秒超时
 		SendResult sendResult = defaultMQProducer.send(sendMsg);
 		log.info("消息发送响应信息："+sendResult.toString());
+		defaultMQProducer.shutdown();
 	}
 }
