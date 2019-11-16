@@ -24,7 +24,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 public class RedisessionJwtConfig implements WebMvcConfigurer {
 
     @Bean
-    @ConditionalOnMissingBean(JwtTokenUtil.class)
+    @ConditionalOnMissingBean(value = JwtTokenUtil.class)
     public JwtTokenUtil createJwtTokenUtil(){
         return new JwtTokenUtil();
     }
@@ -33,10 +33,10 @@ public class RedisessionJwtConfig implements WebMvcConfigurer {
      * 注入封装 restTemplate
      * @return RestTemplate
      */
-    @Bean(name = "restTemplate")
+    @Bean
     @LoadBalanced
     @DubboTransported
-    @ConditionalOnMissingBean(RestTemplate.class)
+    @ConditionalOnMissingBean(value = RestTemplate.class)
     public RestTemplate createRestTemplate() {
         return new RestTemplate();
     }

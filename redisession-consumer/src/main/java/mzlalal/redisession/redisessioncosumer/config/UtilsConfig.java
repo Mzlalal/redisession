@@ -22,7 +22,7 @@ public class UtilsConfig {
     @Bean
     @LoadBalanced
     @DubboTransported
-    @ConditionalOnMissingBean(RestTemplate.class)
+    @ConditionalOnMissingBean(value = RestTemplate.class)
     public RestTemplate createRestTemplate() {
         return new RestTemplate();
     }
