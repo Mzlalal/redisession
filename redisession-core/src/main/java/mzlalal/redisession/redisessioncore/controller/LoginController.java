@@ -11,6 +11,7 @@ import mzlalal.redisession.redisessionjwt.annotation.Token;
 import mzlalal.redisession.redisessionjwt.annotation.TokenPass;
 import mzlalal.redisession.redisessionjwt.utils.JwtTokenUtil;
 import mzlalal.redisession.utils.redis.RedisUtil;
+import org.apache.rocketmq.spring.core.RocketMQTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
@@ -39,6 +40,8 @@ public class LoginController {
     @Autowired
     JwtTokenUtil jwtTokenUtil;
 
+    @Autowired
+    private RocketMQTemplate rocketMQTemplate;
     /**
      * 登录方法
      *
@@ -82,6 +85,8 @@ public class LoginController {
             aj.put("token", jwtTokenUtil.createToken("1", password));
             // 回调URL
             aj.put("callbackUrl", callbackUrl);
+
+            rocketMQTemplate.convertAndSend("user-login", authUserDTO);
         } else {
             aj.setErrorMsg("用户登录失败(用户名或者密码错误)...请重新登录...");
         }
